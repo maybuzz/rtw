@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<% include partials/head.ejs %>
+
+  <body>
+
+    <main class="detail">
+      <div class="chat">
+        <header class="header">
+          <nav>
+            <ul>
+              <li class="back"><a class="back" href="/">terug</a></li>
+            </ul>
+          </nav>
+          <div id="count">
+            <p class="counter-title">total amount of tweets</p>
+            <ul class="counter-list">
+              <li class="count">JavaScript: <%= js %> tweets</li>
+              <li class="count">HTML: <%= html %> tweets</li>
+              <li class="count">CSS: <%= css %> tweets</li>
+              <li class="count">NodeJs: <%= node %> tweets</li>
+            </ul>
+          </div>
+        </header>
+        <ul id="messages">
+
+        </ul>
+        <form class="chat-form" action="">
+          <div class="container-name">
+            <input id="name" class="chat-input-name" type="text" name="name" placeholder="enter your name" required>
+          </div>
+          <div class="container-input">
+            <input id="m" autocomplete="off" class="chat-input" type="text" name="message" placeholder="start typing...">
+            <button class="btn">send</button>
+          </div>
+        </form>
+      </div>
+      <div id="vis"class="twit">
+
+      </div>
+    </main>
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/d3.js"></script>
+
+</body>
+</html>
