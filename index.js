@@ -11,6 +11,8 @@ const http = require('http').Server(app)
 const io = require('socket.io')(http)
 const port = process.env.PORT || 3333
 
+require('dotenv').config()
+
 app
 	.use(express.static(path.join(__dirname, 'src/static')))
 	.use(express.urlencoded({ extended: true }))
@@ -25,7 +27,13 @@ const collection = JSON.parse(fs.readFileSync('./src/static/db/data.json', 'UTF8
 const children = collection[0].children
 
 // twitter
-const client = new TwitterStreamChannels(credentials)
+const client = new TwitterStreamChannels({
+	consumer_key: process.env.consumer_key,
+  consumer_secret: process.env.consumer_secret,
+  access_token: process.env.access_token,
+  access_token_secret: process.env.access_token_secret
+})
+
 const channels = {
 	"languages" : ['html', 'css', 'javascript','nodejs']
 }
