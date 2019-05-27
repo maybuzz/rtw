@@ -1,6 +1,7 @@
 "use strict"
 
 // used Mike Bostock's Zoomable Circle Pack example; https://bl.ocks.org/mbostock/7607535
+// based on my frontend-data project; https://github.com/maybuzz/frontend-data
 
 d3.json("/db/data.json").then(result => {
 

@@ -34,11 +34,11 @@ let stream = client.streamChannels({ track: channels, language: 'en', tweet_mode
 
 // twitter stream
 stream.on('channels/languages', function(stream) {
-        let tweet = {
-            body: stream.text.toLowerCase(),
-            date: stream.created_at,
-        }
-        checkString(tweet)
+    let tweet = {
+        body: stream.text.toLowerCase(),
+        date: stream.created_at,
+    }
+    checkString(tweet)
 })
 
 
@@ -66,64 +66,21 @@ function checkString(tweet) {
 	)
 }
 
-// socket io
-// const room1 = io.of('/room-1')
-// room1.on('connection', function(socket){
-//   console.log('someone connected in 1')
-//
-//   socket.on('chatMessage', function(msg) {
-//     io.emit('chat message', {message: msg})
-// 	})
-// })
-
-// const room2 = io.of('/room-2')
-// room2.on('connection', function(socket){
-//   console.log('someone connected in 2')
-//   room2.emit('hi', 'everyone!')
-//
-//   socket.on('chatMessage', function(msg) {
-//     room2.emit('chatMessage', {message: msg})
-// 	})
-// })
-
-// const room3 = io.of('/room-3')
-// room3.on('connection', function(socket){
-//   console.log('someone connected in 3')
-//   room3.emit('hi', 'everyone!')
-//   socket.on('chatMessage', function(msg) {
-//     room3.emit('chatMessage', {message: msg})
-// 	})
-// })
-
-
 io.on('connection', function(socket) {
 	console.log('user connected ' + '(' + socket.id + ')')
+
+	socket.emit('welcomeMessage')
 
   socket.emit('room')
 
   socket.on('joinRoom', function(url) {
     socket.join(url.roomNumber)
-    socket.emit('welcomeMessage', url.roomNumber)
 		socket.broadcast.emit('connectedUser', {id: socket.id})
   })
-
-	const room2 = io.of('/room-2')
-	room2.on('connection', function(socket){
-	  console.log('someone connected in 2')
-	  room2.emit('hi', 'everyone!')
-
-	  socket.on('chatMessage', function(msg) {
-	    room2.emit('chatMessage', {message: msg})
-		})
-	})
 
 	socket.on('chatMessage', function(msg) {
 		socket.broadcast.emit('chatMessage', {message: msg})
 	})
-
-  // socket.on('chatMessage', function(msg) {
-	// 	socket.broadcast.emit('chatMessage', {message: msg})
-  // })
 
 	socket.on('disconnect', function() {
 		console.log('user disconnected ' + '(' + socket.id + ')')
