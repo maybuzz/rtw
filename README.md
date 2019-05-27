@@ -47,6 +47,7 @@ stream.on('channels/languages', function (tweet) {
 ```
 
 ## Data life-cycle
+![data cycle](/img/datalifecycle.png)
 
 ## To-do
 - [x] basic chat application, [week 1](https://github.com/maybuzz/real-time-web-1819/blob/master/week-1.md)
