@@ -3,6 +3,8 @@
   const ul = document.querySelector('#messages')
   const input = document.querySelector('#m')
 
+  console.log("have fun");
+
   const socket = io()
 
   socket.on('welcomeMessage', function(res) {
